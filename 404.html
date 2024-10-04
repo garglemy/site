@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title>gargle.my</title>
+    <style type="text/css" media="screen">
+      body {
+        background-color: #eee;
+        margin: 0;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      }
+      #container {
+        margin: 20% auto auto auto;
+        width: 90%;
+        text-align: center;
+      }
+      a {
+        text-decoration: none;
+      }
+      p {
+        margin: auto;
+        position:relative;
+        font-size: 60px;
+        font-weight: bold;
+        text-shadow: 4px 8px 2px #bbb;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <p id="text">Unfortunately this site needs JavaScript to work :(</p>
+    </div>
+    <script>
+      var container = document.getElementById("container");
+      container.removeChild(document.getElementById("text"));
+
+      var textvalue = "Gargle my ";
+      textvalue = textvalue + window.location.pathname.substring(1);
+      textvalue = textvalue + window.location.search;
+
+      textvalue.split("/").forEach(function myFunction(item) {
+        if (item.length == 0) {
+          return;
+        }
+        var span = document.createElement("p");
+        span.appendChild(document.createTextNode(decodeURI(item)));
+        container.appendChild(span);
+        container.appendChild(document.createElement("br"));
+      });
+    </script>
+  </body>
+</html>
